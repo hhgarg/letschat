@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:letschat/screens/login_screen.dart';
 import 'package:letschat/screens/registration_screen.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:letschat/components/RoundedButton.dart';
+
 
 class WelcomeScreen extends StatefulWidget {
 
@@ -24,9 +27,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     controller.forward();
     controller.addListener(() {
       setState(() {});
-      //print(animation.value);
     });
-
   }
   @override
   void dispose() {
@@ -52,9 +53,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     height: 100,
                   ),
                 ),
-                Text(
-                  'Let\'s Chat',
-                  style: TextStyle(
+                TypewriterAnimatedTextKit(
+                  text: ['Let\'s Chat',
+                  "Let\'s Chat"],
+                  textStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
@@ -65,47 +67,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ),
+            RoundedButton(
+              title: "Log In",
+              colour: Colors.lightBlueAccent,
+              onPressed: (){
+                Navigator.pushNamed(context, LoginScreen.id);
+              },),
+            RoundedButton(
+              title: "Register",
+              colour: Colors.blueAccent,
+              onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
             ),
           ],
         ),
@@ -113,3 +86,4 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     );
   }
 }
+
