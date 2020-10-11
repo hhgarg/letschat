@@ -3,8 +3,13 @@ import 'package:letschat/screens/welcome_screen.dart';
 import 'package:letschat/screens/login_screen.dart';
 import 'package:letschat/screens/registration_screen.dart';
 import 'package:letschat/screens/chat_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(letsChat());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(letsChat());
+}
 
 class letsChat extends StatelessWidget {
   @override
@@ -17,10 +22,10 @@ class letsChat extends StatelessWidget {
       ),
       initialRoute: WelcomeScreen.id,
       routes: {
-        WelcomeScreen.id : (context) => WelcomeScreen(),
-        LoginScreen.id : (context) => LoginScreen(),
-        RegistrationScreen.id : (context) => RegistrationScreen(),
-        ChatScreen.id : (context) => LoginScreen(),
+        WelcomeScreen.id: (context) => WelcomeScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        ChatScreen.id: (context) => ChatScreen(),
       },
     );
   }
