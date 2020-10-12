@@ -14,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool spinner = false;
   final _auth = FirebaseAuth.instance;
+  final messageTextController = TextEditingController();
+  final messageTextControllerp = TextEditingController();
   String email;
   String password;
   @override
@@ -28,19 +30,27 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 48.0,
               ),
               TextField(
+                controller: messageTextController,
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black45,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
                 onChanged: (value) {
                   email = value;
                 },
@@ -52,8 +62,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 8.0,
               ),
               TextField(
+                controller: messageTextControllerp,
                 obscureText: true,
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black45,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
                 onChanged: (value) {
                   password = value;
                 },
@@ -68,6 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 title: "Log In",
                 colour: Colors.lightBlueAccent,
                 onPressed: () async {
+                  messageTextController.clear();
+                  messageTextControllerp.clear();
                   setState(() {
                     spinner = true;
                   });
@@ -82,6 +100,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     });
                   } catch (e) {
                     print(e);
+                    setState(() {
+                      spinner = false;
+                    });
                   }
                 },
               ),

@@ -14,6 +14,8 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   bool spinner = false;
   final _auth = FirebaseAuth.instance;
+  final messageTextController = TextEditingController();
+  final messageTextControllerp = TextEditingController();
   String email;
   String password;
 
@@ -29,19 +31,27 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 48.0,
               ),
               TextField(
+                controller: messageTextController,
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black45,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
                 onChanged: (value) {
                   email = value;
                 },
@@ -52,8 +62,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 8.0,
               ),
               TextField(
+                controller: messageTextControllerp,
                 obscureText: true,
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black45,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
                 onChanged: (value) {
                   password = value;
                 },
@@ -67,6 +83,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 title: "Register",
                 colour: Colors.blueAccent,
                 onPressed: () async {
+                  messageTextController.clear();
+                  messageTextControllerp.clear();
                   // print(email);
                   // print(password);
                   setState(() {
@@ -83,6 +101,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     });
                   } catch (e) {
                     print(e);
+                    setState(() {
+                      spinner = false;
+                    });
                   }
                 },
               ),
