@@ -1,8 +1,8 @@
 # letschat
 
-It is a flutter application which allows users to enter a general room and chat with each other.
-Build APK is [here](/app-arm-v8a-release.apk)
-For Screenshots click [here](/Screenshots)
+It is a flutter application which allows users to enter a general room and chat with each other.<br/>
+Build APK is [here](/app-arm64-v8a-release.apk).<br/>
+For Screenshots click [here](/Screenshots).<br/>
 
 
 This app uses google firebase for user authentication.
