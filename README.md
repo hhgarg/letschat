@@ -4,7 +4,7 @@ It is a flutter application which allows users to enter a general room and chat 
 Build APK is [here](/app-arm64-v8a-release.apk).<br/>
 <br/>
 <br/>
-<b>#Screenshots<\b><br/>
+##Screenshots<br/>
 <img src="https://github.com/invictus-15/letschat/blob/master/Screenshots/Screenshot_20201014-011848.png" height="300em" />
 <img src="https://github.com/invictus-15/letschat/blob/master/Screenshots/Screenshot_20201014-011853.png" height="300em" />
 <img src="https://github.com/invictus-15/letschat/blob/master/Screenshots/Screenshot_20201014-011907.png" height="300em" />
